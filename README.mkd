@@ -1,0 +1,19 @@
+# Swaddle wraps up jackson-scala-module
+
+It took me most of an afternoon to get all the pieces of jackson-scala-module put together in a way that I could actually use them. This is the result. Saved here largely for prosterity and easy linking.
+
+```scala
+import org.conbere.swaddle.Swaddle
+import com.fasterxml.jackson.core.JsonParser
+
+object Main {
+  def main(args:Array[String]) {
+    val swaddle = new Swaddle()
+    swaddle.mapper.configure(JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)
+    println(swaddle.deserialize[Map[String,Int]]("""{ "x": 10 }"""))
+    // => Map[String,Int]("x" -> 10)
+    println(swaddle.deserialize[Map[String,Int]]("""{ "x": 0010 }"""))
+    // => Map[String,Int]("x" -> 10)
+  }
+}
+```
