@@ -1,3 +1,5 @@
+package org.conbere.swaddle
+
 import com.fasterxml.jackson.databind.{ ObjectMapper, DeserializationFeature, SerializationFeature }
 import com.fasterxml.jackson.databind.cfg.ConfigFeature;
 import com.fasterxml.jackson.module.scala.DefaultScalaModule
@@ -6,31 +8,13 @@ import com.fasterxml.jackson.core.JsonParser
 import java.lang.reflect.{Type, ParameterizedType}
 import com.fasterxml.jackson.core.`type`.TypeReference;
 
-trait JacksLike {
-  val serializationFeatures:List[(SerializationFeature, Boolean)]
-  val deserializationFeatures:List[(DeserializationFeature, Boolean)]
-  val parserFeatures:List[(JsonParser.Feature, Boolean)]
-
+trait SwaddleLike {
   def deserialize[T: Manifest](value: String) : T =
     mapper.readValue(value, typeReference[T])
 
   lazy val mapper =  {
     val m = new ObjectMapper()
-
     m.registerModule(DefaultScalaModule)
-
-    for ((feature, flag) <- serializationFeatures) { 
-      m.configure(feature, flag)
-    }
-
-    for ((feature, flag) <- deserializationFeatures) { 
-      m.configure(feature, flag)
-    }
-
-    for ((feature, flag) <- parserFeatures) { 
-      m.configure(feature, flag)
-    }
-
     m
   }
 
@@ -51,18 +35,15 @@ trait JacksLike {
   }
 }
 
-class Jacks (
-  val serializationFeatures:List[(SerializationFeature, Boolean)] = List(),
-  val deserializationFeatures:List[(DeserializationFeature, Boolean)] = List(),
-  val parserFeatures:List[(JsonParser.Feature, Boolean)] = List()
-) extends JacksLike
+class Swaddle extends SwaddleLike
 
 object Main {
-  val jacks = new Jacks(parserFeatures = List((JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)))
+  val swaddle = new Swaddle()
+  swaddle.mapper.configure(JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)
 
   def deserialize[T:Manifest](in:String) = {
     println("in: " + in)
-    val out = jacks.deserialize[T](in)
+    val out = swaddle.deserialize[T](in)
     println("out: " + out)
     out
   }
