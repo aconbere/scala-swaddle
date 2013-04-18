@@ -1,0 +1,39 @@
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mInitial source changes: [0m
+[0m[[0mdebug[0m] [0m	removed:Set()[0m
+[0m[[0mdebug[0m] [0m	added: Set(/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala, /Users/aconbere/Projects/scala/scala-swaddle/jacks.scala)[0m
+[0m[[0mdebug[0m] [0m	modified: Set()[0m
+[0m[[0mdebug[0m] [0mRemoved products: Set()[0m
+[0m[[0mdebug[0m] [0mModified external sources: Set()[0m
+[0m[[0mdebug[0m] [0mModified binary dependencies: Set()[0m
+[0m[[0mdebug[0m] [0mInitial directly invalidated sources: Set(/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala, /Users/aconbere/Projects/scala/scala-swaddle/jacks.scala)[0m
+[0m[[0mdebug[0m] [0m[0m
+[0m[[0mdebug[0m] [0mSources indirectly invalidated by:[0m
+[0m[[0mdebug[0m] [0m	product: Set()[0m
+[0m[[0mdebug[0m] [0m	binary dep: Set()[0m
+[0m[[0mdebug[0m] [0m	external source: Set()[0m
+[0m[[0mdebug[0m] [0mInitially invalidated: Set(/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala, /Users/aconbere/Projects/scala/scala-swaddle/jacks.scala)[0m
+[0m[[0mdebug[0m] [0mRecompiling all 2 sources: invalidated sources (2) exceeded 50.0% of all sources[0m
+[0m[[0minfo[0m] [0mCompiling 2 Scala sources to /Users/aconbere/Projects/scala/scala-swaddle/target/scala-2.10/classes...[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 793cf8e8, interfacing (CompilerInterface) with Scala compiler version 2.10.0[0m
+[0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
+[0m[[0mdebug[0m] [0m	-deprecation[0m
+[0m[[0mdebug[0m] [0m	-feature[0m
+[0m[[0mdebug[0m] [0m	-d[0m
+[0m[[0mdebug[0m] [0m	/Users/aconbere/Projects/scala/scala-swaddle/target/scala-2.10/classes[0m
+[0m[[0mdebug[0m] [0m	-bootclasspath[0m
+[0m[[0mdebug[0m] [0m	/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/lib/JObjC.jar:/Library/Java/JavaVirtualMachines/jdk1.7.0_17.jdk/Contents/Home/jre/classes:/Users/aconbere/.sbt/boot/scala-2.10.0/lib/scala-library.jar[0m
+[0m[[0mdebug[0m] [0m	-classpath[0m
+[0m[[0mdebug[0m] [0m	/Users/aconbere/Projects/scala/scala-swaddle/target/scala-2.10/classes:/Users/aconbere/.ivy2/cache/com.fasterxml.jackson.module/jackson-module-scala_2.10/jars/jackson-module-scala_2.10-2.2.0-rc1.jar:/Users/aconbere/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.2.0-rc1.jar:/Users/aconbere/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/jars/jackson-annotations-2.2.0-rc1.jar:/Users/aconbere/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/jars/jackson-databind-2.2.0-rc1.jar:/Users/aconbere/.ivy2/cache/com.thoughtworks.paranamer/paranamer/jars/paranamer-2.3.jar:/Users/aconbere/.ivy2/cache/com.google.guava/guava/jars/guava-13.0.1.jar:/Users/aconbere/.ivy2/cache/com.google.code.findbugs/jsr305/jars/jsr305-2.0.1.jar[0m
+[0m[[31merror[0m] [0m/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala:9: JacksLike is already defined as trait JacksLike[0m
+[0m[[31merror[0m] [0mtrait JacksLike {[0m
+[0m[[31merror[0m] [0m      ^[0m
+[0m[[31merror[0m] [0m/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala:54: Jacks is already defined as class Jacks[0m
+[0m[[31merror[0m] [0mclass Jacks ([0m
+[0m[[31merror[0m] [0m      ^[0m
+[0m[[31merror[0m] [0m/Users/aconbere/Projects/scala/scala-swaddle/src/main/scala/Swaddle.scala:60: Main is already defined as object Main[0m
+[0m[[31merror[0m] [0mobject Main {[0m
+[0m[[31merror[0m] [0m       ^[0m
+[0m[[31merror[0m] [0mthree errors found[0m
+[0m[[0mdebug[0m] [0mCompilation failed (CompilerInterface)[0m
+[0m[[31merror[0m] [0m(compile:[31mcompile[0m) Compilation failed[0m
