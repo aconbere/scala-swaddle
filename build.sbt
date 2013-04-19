@@ -1,6 +1,8 @@
 name := "swaddle"
 
-version := "0.1.0"
+version := "0.0.1"
+
+crossScalaVersions := Seq("2.9.3", "2.10.0")
 
 organization := "org.conbere"
 
@@ -11,8 +13,7 @@ homepage := Some(url("http://github.com/aconbere/scala-irc"))
 scalaVersion := "2.10.0"
 
 scalacOptions ++= Seq(
-  "-deprecation",
-  "-feature"
+  "-deprecation"
 )
 
 fork in run := true
@@ -22,8 +23,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 testOptions in Test += Tests.Argument("-oDF")
 
 libraryDependencies ++= Seq(
-  "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
+  "org.scalatest" %% "scalatest" % "1.9.1" % "test",
   "junit" % "junit" % "4.10" % "test",
   "com.fasterxml.jackson.module" %% "jackson-module-scala" % "2.2.0-rc1",
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.1.3"
+  "com.fasterxml.jackson.core" % "jackson-databind" % "2.2.0-rc1"
 )

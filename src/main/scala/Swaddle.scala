@@ -24,9 +24,9 @@ trait SwaddleLike {
 
   private def typeFromManifest(m: Manifest[_]): Type = {
     if (m.typeArguments.isEmpty) {
-      m.runtimeClass 
+      m.erasure 
     } else new ParameterizedType {
-      def getRawType = m.runtimeClass
+      def getRawType = m.erasure
       def getActualTypeArguments = m.typeArguments.map(typeFromManifest).toArray
       def getOwnerType = null
     }
