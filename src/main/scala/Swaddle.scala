@@ -9,53 +9,10 @@ import com.fasterxml.jackson.core.JsonGenerator
 import java.lang.reflect.{Type, ParameterizedType}
 import com.fasterxml.jackson.core.`type`.TypeReference;
 
-object SwaddleLike {
-  def scalaMapper:ObjectMapper = {
-    val m = new ObjectMapper()
-    m.registerModule(DefaultScalaModule)
-    m
-  }
-}
-
 trait SwaddleLike extends Serializable {
   val mapper:ObjectMapper
 
-  def update(m:ObjectMapper):SwaddleLike
-
-  def updateMapper(f:ObjectMapper => ObjectMapper) = f(mapper.copy)
-
-
-
-  def configure(feature:SerializationFeature, state:Boolean) =
-    update(updateMapper { _.configure(feature, state) })
-
-  def configure(feature:DeserializationFeature, state:Boolean) =
-    update(updateMapper { _.configure(feature, state) })
-
-  def configure(feature:MapperFeature, state:Boolean) =
-    update(updateMapper { _.configure(feature, state) })
-
-  def configure(feature:JsonParser.Feature, state:Boolean) =
-    update(updateMapper { _.configure(feature, state) })
-
-  def configure(feature:JsonGenerator.Feature, state:Boolean) =
-    update(updateMapper { _.configure(feature, state) })
-
-
-
-  def enable(feature:SerializationFeature) =
-    update(updateMapper { _.enable(feature) })
-
-  def enable(feature:DeserializationFeature) =
-    update(updateMapper { _.enable(feature) })
-
-
-  def disable(feature:SerializationFeature) =
-    update(updateMapper { _.disable(feature) })
-
-  def disable(feature:DeserializationFeature) =
-    update(updateMapper { _.disable(feature) })
-
+  def buildMapper = MapperBuilder.create
 
   def deserialize[T: Manifest](value: String) : T =
     mapper.readValue(value, typeReference[T])
@@ -73,9 +30,54 @@ trait SwaddleLike extends Serializable {
       def getOwnerType = null
     }
   }
+
 }
 
-class Swaddle(val mapper:ObjectMapper) extends SwaddleLike {
-  def this() = this(SwaddleLike.scalaMapper)
-  def update(m:ObjectMapper) = new Swaddle(m)
+object MapperBuilder {
+  def create = {
+    val m = new ObjectMapper()
+    m.registerModule(DefaultScalaModule)
+    new MapperBuilder(m)
+  }
+}
+
+class MapperBuilder(val mapper:ObjectMapper) {
+  def updateMapper(f:ObjectMapper => Unit) = {
+    f(mapper)
+    this
+  }
+
+  def configure(feature:SerializationFeature, state:Boolean) =
+    updateMapper(_.configure(feature, state))
+
+  def configure(feature:DeserializationFeature, state:Boolean) =
+    updateMapper(_.configure(feature, state))
+
+  def configure(feature:MapperFeature, state:Boolean) =
+    updateMapper(_.configure(feature, state))
+
+  def configure(feature:JsonParser.Feature, state:Boolean) =
+    updateMapper(_.configure(feature, state))
+
+  def configure(feature:JsonGenerator.Feature, state:Boolean) =
+    updateMapper(_.configure(feature, state))
+
+
+  def enable(feature:SerializationFeature) =
+    updateMapper(_.enable(feature))
+
+  def enable(feature:DeserializationFeature) =
+    updateMapper(_.enable(feature))
+
+  def disable(feature:SerializationFeature) =
+    updateMapper(_.disable(feature))
+
+  def disable(feature:DeserializationFeature) =
+    updateMapper(_.disable(feature))
+
+  def build = mapper
+}
+
+object Swaddle extends SwaddleLike {
+  val mapper = buildMapper.build
 }
