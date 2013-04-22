@@ -9,14 +9,14 @@ import java.lang.reflect.{Type, ParameterizedType}
 import com.fasterxml.jackson.core.`type`.TypeReference;
 
 trait SwaddleLike {
-  def deserialize[T: Manifest](value: String) : T =
-    mapper.readValue(value, typeReference[T])
-
   lazy val mapper = {
     val m = new ObjectMapper()
     m.registerModule(DefaultScalaModule)
     m
   }
+
+  def deserialize[T: Manifest](value: String) : T =
+    mapper.readValue(value, typeReference[T])
 
   private def typeReference[T: Manifest] = new TypeReference[T] {
     override def getType = typeFromManifest(manifest[T])
