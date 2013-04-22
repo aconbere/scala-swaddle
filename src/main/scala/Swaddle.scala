@@ -34,20 +34,3 @@ trait SwaddleLike {
 }
 
 class Swaddle extends SwaddleLike
-
-object Main {
-  val swaddle = new Swaddle()
-  swaddle.mapper.configure(JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)
-
-  def deserialize[T:Manifest](in:String) = {
-    println("in: " + in)
-    val out = swaddle.deserialize[T](in)
-    println("out: " + out)
-    out
-  }
-
-  def main(args:Array[String]) {
-    deserialize[Map[String,Int]]("""{ "x": 10 }""")
-    deserialize[Map[String,Int]]("""{ "x": 0010 }""")
-  }
-}
