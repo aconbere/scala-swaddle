@@ -8,8 +8,12 @@ import com.fasterxml.jackson.core.JsonParser
 
 object Main {
   def main(args:Array[String]) {
-    val swaddle = new Swaddle()
-    swaddle.mapper.configure(JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)
+    val swaddle = new Swaddle {
+      val mapper = buildMapper
+        .configure(JsonParser.Feature.ALLOW_NUMERIC_LEADING_ZEROS, true)
+        .build        
+    }
+
     println(swaddle.deserialize[Map[String,Int]]("""{ "x": 10 }"""))
     // => Map[String,Int]("x" -> 10)
     println(swaddle.deserialize[Map[String,Int]]("""{ "x": 0010 }"""))
