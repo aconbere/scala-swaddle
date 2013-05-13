@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonGenerator
 import java.lang.reflect.{Type, ParameterizedType}
 import com.fasterxml.jackson.core.`type`.TypeReference;
 
-trait SwaddleLike extends Serializable {
+trait SwaddleLike {
   val mapper:ObjectMapper
 
   def buildMapper = MapperBuilder.create
