@@ -9,6 +9,8 @@ import com.fasterxml.jackson.core.JsonGenerator
 import java.lang.reflect.{Type, ParameterizedType}
 import com.fasterxml.jackson.core.`type`.TypeReference;
 
+import java.io.StringWriter
+
 trait SwaddleLike {
   val mapper:ObjectMapper
 
@@ -16,6 +18,12 @@ trait SwaddleLike {
 
   def deserialize[T: Manifest](value: String) : T =
     mapper.readValue(value, typeReference[T])
+
+  def serialize(value: Any): String = {
+    val writer = new StringWriter()
+    mapper.writeValue(writer, value)
+    writer.toString
+  }
 
   private def typeReference[T: Manifest] = new TypeReference[T] {
     override def getType = typeFromManifest(manifest[T])

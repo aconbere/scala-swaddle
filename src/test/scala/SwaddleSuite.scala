@@ -46,4 +46,9 @@ class SwaddleSuite extends FunSuite {
 
     swaddle.deserialize[Map[String,Any]](json)
   }
+
+  test("can serialize a simple map") {
+    val m = Map[String,Int]("x" -> 10)
+    assert(Swaddle.serialize(m) === """{"x":10}""")
+  }
 }
